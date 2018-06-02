@@ -13,7 +13,7 @@ The paper states:
 and k-th feature space C(m,k) are normalized as:*
 
 
-![](images/Cstmvn.jpeg =250x)
+![50%](images/Cstmvn.jpeg)
 
 *where m and k represent the frame index and cepstral coefficients index,
 respectively, L is the sliding window length in frames. μst(m,k) and σst(m,k) are the
