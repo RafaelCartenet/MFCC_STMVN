@@ -1,7 +1,9 @@
+# Rafael cartenet
+# 2018
 
+import numpy as np
 
-
-def __mfcc_stmvn(self, MFCC_matrix, window_size=300):
+def mfcc_stmvn_smart_way(MFCC_matrix, window_size=300):
     """ Short-time Mean and Variance Normalization
         According to paper:
         " Comparative evaluation of feature normalization techniques for voice
@@ -13,14 +15,9 @@ def __mfcc_stmvn(self, MFCC_matrix, window_size=300):
     """
 
     # Initialize new mfcc matrix
-    new_MFCC_matrix= np.zeros(shape=MFCC_matrix.shape)
-    nb_frames, nb_coeffs= new_MFCC_matrix.shape
+    nb_frames, nb_coeffs= MFCC_matrix.shape
+    new_MFCC_matrix= np.zeros(shape=(nb_frames, nb_coeffs))
     window= window_size//2
-
-
-    #---------------------------------#
-    # SMART WAY.
-    #---------------------------------#
 
     # In order to compute mean and variance at time t in function of values at
     # t-1, we first compute the initial vectors mean and variance, at index t=m
@@ -42,17 +39,14 @@ def __mfcc_stmvn(self, MFCC_matrix, window_size=300):
         vari+= (MFCC_matrix[j, :] - mean)**2
     vari/= L
 
-
     # Compute new values of first MFCC vector, thanks to mean and variance
     new_MFCC_matrix[0, :]= (MFCC_matrix[0, :] - mean) / vari
-
 
     # We compute the following new vectors from the previous ones
     for m in range(1, nb_frames):
         t_s= max(0, m - window)
         t_e= min(nb_frames-1, m + window)
         L= t_e - t_s + 1
-
 
         if (m - window <= 0) and (m + window >= nb_frames):
             # Compute new values of first MFCC vector, thanks to mean and variance
@@ -94,5 +88,45 @@ def __mfcc_stmvn(self, MFCC_matrix, window_size=300):
 
             # Compute new values of first MFCC vector, thanks to mean and variance
             new_MFCC_matrix[m, :]= (MFCC_matrix[m, :] - mean) / vari
+
+    return new_MFCC_matrix
+
+
+def mfcc_stmvn_brute_way(MFCC_matrix, window_size=300):
+    """ Short-time Mean and Variance Normalization
+        According to paper:
+        " Comparative evaluation of feature normalization techniques for voice
+        password based speaker verification "
+        - Md Jahangir Alam,
+        - Pierre Ouellet,
+        - Patrick Kenny,
+        - Douglas O'Shaughnessy
+    """
+
+    # Initialize new mfcc matrix
+    nb_frames, nb_coeffs= MFCC_matrix.shape
+    new_MFCC_matrix= np.zeros(shape=(nb_frames, nb_coeffs))
+    window= window_size//2
+
+    for m in range(0, nb_frames):
+        t_s= max(0, m - window)
+        t_e= min(nb_frames-1, m + window)
+        L= t_e - t_s + 1
+
+        mean= np.zeros(shape=(nb_coeffs))
+        vari= np.zeros(shape=(nb_coeffs))
+
+        # compute mean vector
+        for j in range(t_s, t_e + 1):
+            mean+= MFCC_matrix[j, :]
+        mean/= L
+
+        # compute variance vector
+        for j in range(t_s, t_e + 1):
+            vari+= (MFCC_matrix[j, :] - mean)**2
+        vari/= L
+
+        # Compute new values of first MFCC vector, thanks to mean and variance
+        new_MFCC_matrix[m, :]= (MFCC_matrix[m, :] - mean) / vari
 
     return new_MFCC_matrix
