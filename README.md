@@ -25,12 +25,11 @@ short-time mean and standard deviation, respectively, defined as:*
 
 ---
 
-This normalization turns out to show interesting results. Furthermore, in a practical application, a short-term variance is easier to compute than a normalization over all available samples in a dataset.
+This normalization turns out to show interesting results. Furthermore, in a practical application, a short-term variance is easier to compute than a normalization over all available samples from a dataset.
 
 However, this normalization is heavy regarding computations. Indeed at every frame the mean and variance is computed using the neigbhour frames. At the timestamp t, frames [t-L/2, ..., t+L/2] are used to compute mean and variance. At the timestamp t+1, frames [t-L/2+1, ..., t+L/2+1] are used to compute mean and variance.
 
-Rather than recomputing mean and variance from scratch at every single time step we can instead compute the **reccurence formulas** of the mean and variance, which implies much less computations.
-
+Rather than recomputing mean and variance from scratch at every single time step we can instead find the **reccurence formulas** of the mean and variance, which implies much less computations.
 
 ---
 
