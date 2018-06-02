@@ -24,3 +24,15 @@ short-time mean and standard deviation, respectively, defined as:*
 ![](images/SIGMAst.jpeg)
 
 ---
+
+
+
+We generate a random MFCC matrix of 1000 frames and compute the STMVN normalization with both methods, smart one and brute one.
+
+```python
+N= 1000
+MFCC_matrix= np.random.rand(N, 13)
+
+mfcc1= mfcc_stmvn_smart_way(MFCC_matrix)
+mfcc2= mfcc_stmvn_brute_way(MFCC_matrix)
+```
