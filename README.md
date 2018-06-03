@@ -15,7 +15,7 @@ The paper states:
 and k-th feature space C(m,k) are normalized as:*
 
 
-![50%](images/Cstmvn.jpeg)
+![](images/Cstmvn.jpeg =100x)
 
 *where m and k represent the frame index and cepstral coefficients index,
 respectively, L is the sliding window length in frames. μst(m,k) and σst(m,k) are the
@@ -76,8 +76,8 @@ np.allclose(mfcc1, mfcc2, rtol=1e-10, atol=1e-10)
 ```
 
 At the first glance results seem wrong, both arrays aren't equal. But computing the absolute average of the differences element wise we find out that it's really tiny, 10E-15 order.
-Indeed with a 1e-10 tolerance both arrays are equal!
-This tiny neglectable can be explained by the unprecise float computations.
+Indeed with a 1e-10 tolerance both arrays are equal.
+This tiny neglectable difference can be explained by the unprecise float computations.
 
 Now we highlight the computations saving of this method. We repeat many times (here a hundred times) the computation of the normalization using both methods and compute the average time for each method:
 
