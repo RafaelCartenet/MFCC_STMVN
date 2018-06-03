@@ -2,6 +2,8 @@
 
 STMVN applied to MFCC matrices.
 
+## Paper
+
 This is my optimized implementation of a normalization from the paper:
 https://www.crim.ca/perso/patrick.kenny/Jahangir_nolisp2011_16_final.pdf
 
@@ -29,9 +31,20 @@ This normalization turns out to show interesting results. Furthermore, in a prac
 
 However, this normalization is heavy regarding computations. Indeed at every frame the mean and variance is computed using the neigbhour frames. At the timestamp t, frames [t-L/2, ..., t+L/2] are used to compute mean and variance. At the timestamp t+1, frames [t-L/2+1, ..., t+L/2+1] are used to compute mean and variance.
 
-Rather than recomputing mean and variance from scratch at every single frame we can instead find the **reccurence formulas** of the mean and variance, which implies much less computations.
+Rather than recomputing mean and variance from scratch at every single frame we can instead find the **reccurence relations** of the mean and variance, which implies much less computations.
 
----
+
+## Reccurence relations
+
+I calculated the recurrence relations for the mean and variance.
+There are several cases, one of them being really simple:
+
+If **L >= N**, L being the sliding window length and N the total number of frames, then the neigbhour frames for each time step are the same and thus the mean and variance are the same along all the frames. In that case we just need to compute mean and variance once.
+
+μst(0,k) = μst(1,k) ... = μst(N-1,k)
+σst(0,k) = σst(1,k) ... = σst(N-1,k)
+
+## Results
 
 We generate a random MFCC matrix of 1000 frames and compute the STMVN normalization with both methods, smart one and brute one.
 
