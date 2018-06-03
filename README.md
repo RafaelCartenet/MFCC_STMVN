@@ -39,9 +39,9 @@ Rather than recomputing mean and variance from scratch at every single frame we 
 I calculated the recurrence relations for the mean and variance.
 There are several cases, one of them being really simple:
 
-If **L >= N**, L being the sliding window length and N the total number of frames, then the neigbhour frames for each time step are the same and thus the mean and variance are the same along all the frames. In that case we just need to compute mean and variance once.
+If **L >= N**, L being the sliding window length and N the total number of frames, then the neigbhour frames for each frame are the same and thus the mean and variance are the same along all the frames. In that case we just need to compute mean and variance once.
 
-μst(0,k) = μst(1,k) ... = μst(N-1,k)
+μst(0,k) = μst(1,k) ... = μst(N-1,k)<br/>
 σst(0,k) = σst(1,k) ... = σst(N-1,k)
 
 ## Results
