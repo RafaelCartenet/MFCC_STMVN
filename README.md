@@ -1,4 +1,4 @@
-# Short-time Mean and Variance Normalization (STMVN)
+# Optimised Short-time Mean and Variance Normalization (STMVN)
 
 STMVN applied to MFCC matrices.
 
@@ -15,7 +15,7 @@ The paper states:
 and k-th feature space C(m,k) are normalized as:*
 
 
-![](images/Cstmvn.png =100x)
+![](images/Cstmvn.png)
 
 *where m and k represent the frame index and cepstral coefficients index,
 respectively, L is the sliding window length in frames. μst(m,k) and σst(m,k) are the
@@ -47,6 +47,16 @@ For **L >= N**, L being the sliding window length and N the total number of fram
 For **L < N**, we have to compute the following reccurence relations:
 
 ![](images/reccurence.jpeg)
+
+![](images/forall.png)
+
+![](images/alphabeta.png)
+
+![](images/center.png)
+
+![](images/noleft.png)
+
+![](images/noright.png)
 
 
 

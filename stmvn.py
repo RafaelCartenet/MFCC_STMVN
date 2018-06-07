@@ -69,7 +69,7 @@ def mfcc_stmvn_smart_way(MFCC_matrix, window_size=300):
                 mean= ((L+1)*mean - BETA)/L
 
                 # Variance formula
-                vari= vari*(L+1)/(L)
+                vari= vari*(L+1)/L
                 vari-= (BETA - mean)**2/(L+1)
 
             else:

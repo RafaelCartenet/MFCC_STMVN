@@ -44,3 +44,6 @@ brute_avg_time/= nb_samples
 
 print smart_avg_time
 print brute_avg_time
+
+
+# \mu(m+1, k)=  \mu(m, k) +  \frac{1}{L}C(m+\frac{L}{2},k) + (-\frac{1}{L}C(m-\frac{L}{2},k)
