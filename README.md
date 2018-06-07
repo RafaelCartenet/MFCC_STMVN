@@ -41,14 +41,11 @@ There are several cases, one of them being really simple:
 
 For **L >= N**, L being the sliding window length and N the total number of frames, then the neigbhour frames for each frame are the same and thus μst and σst are equals along all the frames. In that case we just need to compute μst and σst once.
 
-μst(0,k) = μst(1,k) = ... = μst(N-1,k)<br/>
-σst(0,k) = σst(1,k) = ... = σst(N-1,k)
+![](images/forall.png)
 
 For **L < N**, we have to compute the following reccurence relations:
 
 ![](images/reccurence.jpeg)
-
-![](images/forall.png)
 
 ![](images/alphabeta.png)
 
