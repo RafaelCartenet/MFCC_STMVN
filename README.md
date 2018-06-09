@@ -47,13 +47,23 @@ For **L < N**, we have to compute the following reccurence relations:
 
 ![](images/reccurence.jpeg)
 
+We introduce α and β:
+
 ![](images/alphabeta.jpg)
+
+One can prove that:
 
 ![](images/center_1.jpg)
 
+and:
+
 ![](images/center_2.jpg)
 
+One can prove that:
+
 ![](images/noleft.jpg)
+
+One can prove that:
 
 ![](images/noright.jpg)
 
