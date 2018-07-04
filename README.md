@@ -9,7 +9,6 @@ https://www.crim.ca/perso/patrick.kenny/Jahangir_nolisp2011_16_final.pdf
 
 ---
 
-
 ## Concept
 
 The paper states:
@@ -41,7 +40,9 @@ The idea is to compute following recurrence relations:
 
 ![](images/recurrence.jpeg)
 
-There are several cases, several sub domains, one of them being really simple:
+There are several cases, several sub domains, one of them, first one below, being really simple,
+
+---
 
 For **L >= N**, L being the sliding window length and N the total number of frames, the neighbor frames for each frame are the same and thus μst and σst are equals along all the frames. In that case we just need to compute μst and σst once, as indeed:
 
@@ -51,32 +52,41 @@ For **L >= N**, L being the sliding window length and N the total number of fram
 
 For **L < N**, we have to compute the recurrence relations.
 
+```py
+t_s= max(0, m - L/2)
+t_e= min(N - 1, m + L/2 - 1)
+l= t_e - t_s
+```
+
 We introduce α and β:
 
 ![](images/alphabeta.jpg)
 
-One can prove that:
+One can prove that, if `m - l/2 > 0` and `m + l/2 < N`, then `L = l` and :
 
 ![](images/center_1.jpg)
-
 
 ![](images/center_2.jpg)
 
 ---
 
-One can prove that:
+Similarly, one can prove that, when `m - l/2 < 0`, then `L = l/2 + m` and:
 
 ![](images/noleft.jpg)
 
 ---
 
-One can prove that:
+Similarly, one can prove that, when `m + l/2 >= 0`, then `L = l/2 + (N-m)` and:
 
 ![](images/noright.jpg)
 
+---
+
+If interested I suggest to try to recompute the formulas with good ol' paper and pen to find out by yourself.
 
 ## Results
 
+It is now time to try it out, regarding accuracy and performance.
 Let's generate a random MFCC matrix of 1000 frames and compute the STMVN normalization with both methods, smart one and brute one.
 
 ```python
