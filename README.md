@@ -28,11 +28,11 @@ short-time mean and standard deviation, respectively, defined as:*
 
 ---
 
-This normalization turns out to show interesting results. Furthermore, in a practical application, a short-term variance is easier to compute than a normalization over all available samples from a dataset.
+This normalization turns out to show interesting results. Furthermore, in a practical application, *a short-term variance is easier to compute than a normalization over all available samples from a dataset*.
 
-However, this normalization is heavy regarding computations. Indeed at every frame the mean and variance is computed using the neighbor frames. At the timestamp t, frames `[t-L/2, ..., t+L/2]` are used to compute mean and variance. At the timestamp t+1, frames `[t-L/2+1, ..., t+L/2+1]` are used to compute mean and variance.
+However, this normalization is heavy regarding computations. Indeed at every frame the mean and variance is computed using the neighbor frames. At the timestamp t, frames `[t-L/2, ..., t+L/2]` are used to compute mean and variance, **we are gonna call it the brute way**. At the timestamp t+1, frames `[t-L/2+1, ..., t+L/2+1]` are used to compute mean and variance.
 
-Rather than recomputing mean and variance from scratch at every single frame we can instead find the **recurrence relations** of the mean and variance, which implies much less computations.
+Rather than recomputing mean and variance from scratch based on L frames at every single frame, we are gonna instead find the **recurrence relations** of the mean and variance, that implies much less computations. **We are gonna call it the smart way**.
 
 ## Recurrence relations
 
@@ -44,7 +44,7 @@ There are several cases, several sub domains, one of them, first one below, bein
 
 ---
 
-For **L >= N**, L being the sliding window length and N the total number of frames, the neighbor frames for each frame are the same and thus μst and σst are equals along all the frames. In that case we just need to compute μst and σst once, as indeed:
+For **L >= N**, L being the sliding window length and N the total number of frames, the neighbor frames for each frame are the same and thus `μst` and `σst` are equals along all the frames. In that case we just need to compute `μst` and `σst` once, as indeed:
 
 ![](images/forall.jpg)
 
