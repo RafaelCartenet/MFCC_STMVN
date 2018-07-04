@@ -131,6 +131,9 @@ for _ in range(nb_samples):
     mfcc2= mfcc_stmvn_brute_way(MFCC_matrix)
     brute_avg_time+= time.time() - t0
 
+smart_avg_time/= nb_samples
+brute_avg_time/= nb_samples
+
 smart_avg_time
 >>> 0.0263386082649
 brute_avg_time
