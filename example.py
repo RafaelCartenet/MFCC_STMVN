@@ -25,6 +25,7 @@ print np.allclose(mfcc1, mfcc2, rtol=1e-10, atol=1e-10)
 
 
 # Complexity comparisons
+N= 1000
 brute_avg_time= 0
 smart_avg_time= 0
 nb_samples= 100

@@ -114,9 +114,10 @@ At the first glance results seem wrong, both arrays aren't equal. But computing 
 Indeed with a 1e-10 tolerance both arrays are equal.
 **This tiny neglectable difference can be explained by the unprecise float computations.**
 
-Now we highlight the computations saving of this method. We repeat many times (here a hundred times) the computation of the normalization using both methods and compute the average time for each method:
+Now we highlight the computations saving of this method. We repeat many times (here a hundred times) the computation of the normalization (of a 1000x13 matrix) using both methods and compute the average time for each method:
 
 ```python
+N= 1000
 brute_avg_time= 0
 smart_avg_time= 0
 nb_samples= 100
